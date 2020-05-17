@@ -1,6 +1,5 @@
 import React from 'react';
 import { ReactComponent as LogoSvg } from "../assets/img/logo.svg";
-import './Topbar.scss';
 
 class Topbar extends React.Component {
 	render() {

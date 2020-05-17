@@ -1,17 +1,22 @@
 import React from 'react';
-import "./Contact.scss"
 
 class Contact extends React.Component {
   render() {
+    const { data: contact } = this.props;
+    // const admissionDate = new Date(contact.admissionDate).toLocaleDateString();
+
+    const formatDate = new Intl.DateTimeFormat('pt-BR', { year: 'numeric', month: '2-digit', day: '2-digit' });
+    const [{ value: yyyy },,{ value: mm },,{ value: dd }] = formatDate.formatToParts(new Date(contact.admissionDate));
+
     return (
       <article className="contact" data-testid="contact">
-          <span className="contact__avatar" />
-          <span className="contact__data">Nome</span>
-          <span className="contact__data">Telefone</span>
-          <span className="contact__data">País</span>
-          <span className="contact__data">Admissão</span>
-          <span className="contact__data">Empresa</span>
-          <span className="contact__data">Departamento</span>
+          <img className="contact__avatar" src={contact.avatar} alt={contact.name} />
+          <span className="contact__data" data-testid="contact-name">{contact.name}</span>
+          <span className="contact__data" data-testid="contact-phone">{contact.phone}</span>
+          <span className="contact__data" data-testid="contact-country">{contact.country}</span>
+          <span className="contact__data" data-testid="contact-date">{`${dd}/${mm}/${yyyy}`}</span>
+          <span className="contact__data" data-testid="contact-company">{contact.company}</span>
+          <span className="contact__data" data-testid="contact-department">{contact.department}</span>
       </article>
     );
   }
